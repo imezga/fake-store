@@ -48,18 +48,25 @@ header {
 main {
     padding: 1em;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
     align-items: center;
     justify-content: center;
     grid-gap: 1em;
 
-    flex-wrap: wrap;
     .product {
+        height: 100%;
         width: 100%;
-        max-width: 750px;
+        max-width: 1000px;
         background-color: $blue;
         border-radius: 5px;
         display: flex;
+
+        .price {
+            margin-top: 0.5em;
+            span {
+                font-weight: 100;
+            }
+        }
 
         .product-content {
             display: flex;
@@ -68,57 +75,53 @@ main {
             height: 100%;
             color: $gray;
             padding: 1em;
-        }
 
-        h1 {
-            width: 100%;
-        }
+            .rating {
+                line-height: 30px;
+                margin-top: 1em;
 
-        .rating {
-            line-height: 30px;
-            margin-top: 1em;
-
-            .rate {
-                font-size: 2em;
-                color: gold;
-            }
-        }
-
-        p {
-            margin-top: 1em;
-            font-size: 1.2em;
-            color: $lightblue;
-        }
-
-        .add-to-cart {
-            margin-top: 2em;
-            @include flex;
-
-            input[type='number'] {
-                width: 20%;
-                height: 50px;
-                font-size: 2em;
-                padding: 0.2em;
-                outline: none;
-                border: none;
+                .rate {
+                    font-size: 2em;
+                    color: gold;
+                }
             }
 
-            .add {
-                width: 75%;
-                outline: none;
-                border: none;
-                height: 50px;
-                padding: 0.3em;
-                background-color: $green;
-                font-size: 1.4em;
-                color: $gray;
-                font-weight: bold;
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
+            p {
+                margin-top: 1em;
+                font-size: 1.2em;
+                color: $lightblue;
+            }
 
-                &:hover {
-                    background-color: $gray;
-                    color: $green;
+            .add-to-cart {
+                margin-top: 2em;
+                @include flex;
+
+                input[type='number'] {
+                    width: 20%;
+                    height: 50px;
+                    font-size: 2em;
+                    padding: 0.2em;
+                    outline: none;
+                    border: none;
+                }
+
+                .add {
+                    width: 75%;
+                    outline: none;
+                    border: none;
+                    height: 50px;
+                    padding: 0.3em;
+                    background-color: $green;
+                    font-size: 1.4em;
+                    color: $gray;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                        background-color: $gray;
+                        color: $green;
+                    }
                 }
             }
         }
@@ -127,8 +130,16 @@ main {
             width: 45%;
         }
     }
+}
 
-    @media (max-width: 750px) {
+@media (max-width: 1500px) {
+    main {
+        grid-template-columns: repeat(1, auto);
+    }
+}
+
+@media (max-width: 1000px) {
+    main {
         .product {
             flex-direction: column;
 
@@ -136,17 +147,5 @@ main {
                 width: 100%;
             }
         }
-    }
-}
-
-@media (max-width: 2000px) {
-    main {
-        grid-template-columns: repeat(2, auto);
-    }
-}
-
-@media (max-width: 1350px) {
-    main {
-        grid-template-columns: repeat(1, auto);
     }
 }
