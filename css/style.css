@@ -1,7 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+body {
+  background-color: #f2f2f2;
+  height: 100vh;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #52ab98;
+  color: #f2f2f2;
+  height: 80px;
+  -webkit-box-shadow: 0 2px 2px #52ab98;
+          box-shadow: 0 2px 2px #52ab98;
+  position: relative;
+}
+
+header #cart {
+  position: absolute;
+  right: 25px;
+  font-size: 2em;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
+  color: #c8d8e4;
+}
+
+header #cart:hover {
+  color: #f2f2f2;
+}
+
+main {
+  padding: 1em;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 1em;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+main .product {
+  width: 100%;
+  max-width: 750px;
+  background-color: #2b6777;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .product .product-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  color: #f2f2f2;
+  padding: 1em;
+}
+
+main .product h1 {
+  width: 100%;
+}
+
+main .product .rating {
+  line-height: 30px;
+  margin-top: 1em;
+}
+
+main .product .rating .rate {
+  font-size: 2em;
+  color: gold;
+}
+
+main .product p {
+  margin-top: 1em;
+  font-size: 1.2em;
+  color: #c8d8e4;
+}
+
+main .product .add-to-cart {
+  margin-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .product .add-to-cart input[type='number'] {
+  width: 20%;
+  height: 50px;
+  font-size: 2em;
+  padding: 0.2em;
+  outline: none;
+  border: none;
+}
+
+main .product .add-to-cart .add {
+  width: 75%;
+  outline: none;
+  border: none;
+  height: 50px;
+  padding: 0.3em;
+  background-color: #52ab98;
+  font-size: 1.4em;
+  color: #f2f2f2;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+main .product .add-to-cart .add:hover {
+  background-color: #f2f2f2;
+  color: #52ab98;
+}
+
+main .product img {
+  width: 45%;
+}
+
+@media (max-width: 750px) {
+  main .product {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  main .product img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 2000px) {
+  main {
+    -ms-grid-columns: (auto)[2];
+        grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 1350px) {
+  main {
+    -ms-grid-columns: (auto)[1];
+        grid-template-columns: repeat(1, auto);
+  }
 }
 /*# sourceMappingURL=style.css.map */

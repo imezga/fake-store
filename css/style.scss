@@ -1,10 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&display=swap');
+
 $blue: #2b6777;
 $lightblue: #c8d8e4;
 $gray: #f2f2f2;
 $green: #52ab98;
 
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+body {
+    background-color: $gray;
+    height: 100vh;
+}
+
+header {
+    @include flex;
+    background-color: $green;
+    color: $gray;
+    height: 80px;
+    box-shadow: 0 2px 2px $green;
+    position: relative;
+
+    #cart {
+        position: absolute;
+        right: 25px;
+        font-size: 2em;
+        transition: all 0.2s;
+        cursor: pointer;
+        color: $lightblue;
+
+        &:hover {
+            color: $gray;
+        }
+    }
+}
+
+main {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1em;
+
+    flex-wrap: wrap;
+    .product {
+        width: 100%;
+        max-width: 750px;
+        background-color: $blue;
+        border-radius: 5px;
+        display: flex;
+
+        .product-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            color: $gray;
+            padding: 1em;
+        }
+
+        h1 {
+            width: 100%;
+        }
+
+        .rating {
+            line-height: 30px;
+            margin-top: 1em;
+
+            .rate {
+                font-size: 2em;
+                color: gold;
+            }
+        }
+
+        p {
+            margin-top: 1em;
+            font-size: 1.2em;
+            color: $lightblue;
+        }
+
+        .add-to-cart {
+            margin-top: 2em;
+            @include flex;
+
+            input[type='number'] {
+                width: 20%;
+                height: 50px;
+                font-size: 2em;
+                padding: 0.2em;
+                outline: none;
+                border: none;
+            }
+
+            .add {
+                width: 75%;
+                outline: none;
+                border: none;
+                height: 50px;
+                padding: 0.3em;
+                background-color: $green;
+                font-size: 1.4em;
+                color: $gray;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: $gray;
+                    color: $green;
+                }
+            }
+        }
+
+        img {
+            width: 45%;
+        }
+    }
+
+    @media (max-width: 750px) {
+        .product {
+            flex-direction: column;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 2000px) {
+    main {
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media (max-width: 1350px) {
+    main {
+        grid-template-columns: repeat(1, auto);
+    }
 }
