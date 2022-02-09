@@ -15,9 +15,30 @@
         <title>Fake Store</title>
     </head>
     <body>
+        <div id="cart" style="display: none">
+            <i id="cart-icon-close" class="far fa-window-close"></i>
+            <div class="cart-wrapper">
+                <ul>
+                    <li class="cart-item">
+                        <h3>Mens Casual Premium Slim Fit T-Shirts</h3>
+                        <div class="item-info">
+                            <p>Price: <span class="price">500 $</span></p>
+                            <div class="quantity-wrapper">
+                                <div>Quantity: <span class="quantity">1</span></div>
+                                <button id="minus">-</button>
+                                <button id="plus">+</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <h1>TOTAL<span id="total">100 $</span></h1>
+                </div>
+            </div>
+        </div>
         <header>
             <h1>Fake Store</h1>
-            <i id="cart" class="fas fa-shopping-cart"></i>
+            <i id="cart-icon" class="fas fa-shopping-cart"></i>
         </header>
         <main>
             <div class="product">

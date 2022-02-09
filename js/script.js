@@ -1,7 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
     const main = document.querySelector('main');
+    const cartItem = document.getElementsByClassName('.cart-item');
+    const cart = document.getElementById('cart');
+    const price = document.getElementsByClassName('price');
+    const quantity = document.getElementsByClassName('quantity');
+    const cartIcon = document.getElementById('cart-icon');
+    const cartClose = document.getElementById('cart-icon-close');
+    const total = document.getElementById('total');
+    const body = document.getElementsByTagName('body')[0];
 
-    (function getProducts() {
+    cartIcon.addEventListener('click', () => {
+        cartClose.style.display = '';
+        cart.style.display = 'flex';
+        cartIcon.style.display = 'none';
+    });
+
+    cartClose.addEventListener('click', () => {
+        cart.style.display = 'none';
+        cartIcon.style.display = 'block';
+    });
+
+    function getProducts() {
         let title,
             description,
             image,
@@ -35,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                                 <div class="rating">
                                     <h2>Product Rating</h2>
-                                    <span class="rate">3.9</span>
-                                    <span class="votes">120 votes</span>
+                                    <span class="rate">${rate}</span>
+                                    <span class="votes">${votes} votes</span>
                                 </div>
                             </div>
                             <div class="add-to-cart">
@@ -49,5 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 main.innerHTML = html;
             });
-    })();
+    }
+
+    getProducts();
 });

@@ -21,6 +21,133 @@ $green: #52ab98;
 body {
     background-color: $gray;
     height: 100vh;
+    position: relative;
+
+    #cart {
+        top: 0;
+        position: absolute;
+
+        height: 100%;
+        width: 100%;
+        @include flex;
+        background-color: rgba($color: $blue, $alpha: 0.99);
+
+        #cart-icon-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2em;
+            transition: all 0.2s;
+            cursor: pointer;
+            color: $lightblue;
+
+            &:hover {
+                color: $gray;
+            }
+        }
+
+        .cart-wrapper {
+            padding: 1em 0;
+            @include flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1000px;
+            background-color: rgba($color: $lightblue, $alpha: 1);
+            min-height: 70vh;
+
+            #total {
+                font-style: italic;
+                font-weight: 300;
+                margin-left: 0.5em;
+            }
+
+            ul {
+                width: 100%;
+                padding: 0 1.5em;
+
+                .cart-item {
+                    padding: 1em 0;
+                    @include flex;
+                    justify-content: space-between;
+                    border-bottom: 1px double rgba($color: $blue, $alpha: 0.99);
+
+                    &:last-child {
+                        margin-bottom: 1em;
+                    }
+
+                    .item-info {
+                        @include flex;
+
+                        p {
+                            margin-right: 1em;
+                        }
+
+                        .quantity-wrapper {
+                            @include flex;
+
+                            button {
+                                @include flex;
+                                width: 35px;
+                                height: 35px;
+                                font-size: 1.5em;
+                                font-weight: bold;
+                                border: none;
+                                outline: none;
+                                cursor: pointer;
+                                color: $gray;
+                                transition: all 0.2s;
+                            }
+
+                            #plus {
+                                background-color: $green;
+
+                                &:hover {
+                                    background-color: #52ab98d0;
+                                }
+                            }
+
+                            #minus {
+                                background-color: #dd0f0fea;
+
+                                &:hover {
+                                    background-color: #dd0f0fa9;
+                                }
+                            }
+
+                            .quantity {
+                                margin-right: 1em;
+                            }
+                        }
+                    }
+                }
+
+                @media (max-width: 700px) {
+                    h3 {
+                        margin-bottom: 0.5em;
+                    }
+                    & {
+                        .cart-item {
+                            flex-direction: column;
+                            .item.info {
+                                flex-direction: column;
+                            }
+                        }
+                        min-height: 100vh;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 700px) {
+            & {
+                height: auto;
+                #cart-icon-close {
+                    color: $blue;
+                }
+            }
+        }
+    }
 }
 
 header {
@@ -29,9 +156,8 @@ header {
     color: $gray;
     height: 80px;
     box-shadow: 0 2px 2px $green;
-    position: relative;
 
-    #cart {
+    #cart-icon {
         position: absolute;
         right: 25px;
         font-size: 2em;
