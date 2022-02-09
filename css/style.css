@@ -151,19 +151,19 @@ body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper button {
   transition: all 0.2s;
 }
 
-body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper #plus {
+body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper .plus {
   background-color: #52ab98;
 }
 
-body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper #plus:hover {
+body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper .plus:hover {
   background-color: #52ab98d0;
 }
 
-body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper #minus {
+body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper .minus {
   background-color: #dd0f0fea;
 }
 
-body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper #minus:hover {
+body #cart .cart-wrapper ul .cart-item .item-info .quantity-wrapper .minus:hover {
   background-color: #dd0f0fa9;
 }
 

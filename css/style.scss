@@ -99,7 +99,7 @@ body {
                                 transition: all 0.2s;
                             }
 
-                            #plus {
+                            .plus {
                                 background-color: $green;
 
                                 &:hover {
@@ -107,7 +107,7 @@ body {
                                 }
                             }
 
-                            #minus {
+                            .minus {
                                 background-color: #dd0f0fea;
 
                                 &:hover {

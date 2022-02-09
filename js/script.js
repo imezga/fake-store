@@ -1,25 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
     const main = document.querySelector('main');
-    const cartItem = document.getElementsByClassName('.cart-item');
     const cart = document.getElementById('cart');
-    const price = document.getElementsByClassName('price');
-    const quantity = document.getElementsByClassName('quantity');
     const cartIcon = document.getElementById('cart-icon');
     const cartClose = document.getElementById('cart-icon-close');
     const total = document.getElementById('total');
-    const body = document.getElementsByTagName('body')[0];
+    const cartList = document.getElementById('cart-list');
 
+    const cartItems = [];
+    const pushedIds = [];
+
+    // open cart
     cartIcon.addEventListener('click', () => {
         cartClose.style.display = '';
         cart.style.display = 'flex';
         cartIcon.style.display = 'none';
     });
-
+    // close cart
     cartClose.addEventListener('click', () => {
         cart.style.display = 'none';
         cartIcon.style.display = 'block';
     });
 
+    // get products from API
     function getProducts() {
         let title,
             description,
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     rate = data[i].rating.rate;
                     votes = data[i].rating.count;
                     html += `
-                    <div id="${id}" class="product">
+                    <div  class="product">
                         <img src="${image}" />
                         <div class="product-content">
                             <div class="product-heading">
@@ -59,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                             </div>
                             <div class="add-to-cart">
-                                <input type="number" value="1" />
-                                <button class="add">Add to cart</button>
+                                <input class="input" type="number" value="1" />
+                                <button id="${id}" class="add">Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -69,6 +71,95 @@ document.addEventListener('DOMContentLoaded', function () {
                 main.innerHTML = html;
             });
     }
-
     getProducts();
+
+    // get total
+    function getTotal() {
+        let sum = 0;
+        for (let i = 0; i < cartItems.length; i++) {
+            sum += cartItems[i].quantity * cartItems[i].price;
+        }
+        total.innerHTML = `${sum.toFixed(2)} $`;
+    }
+
+    // add items to cart
+    function addItemsToCart() {
+        getTotal();
+        let html = '';
+        for (let i = 0; i < cartItems.length; i++) {
+            const title = cartItems[i].title;
+            const price = cartItems[i].price;
+            const id = cartItems[i].id;
+            const quantity = cartItems[i].quantity;
+
+            html += `
+                <li class="cart-item">
+                    <h3>${title}</h3>
+                    <div class="item-info">
+                        <p>Total: <span class="price">${(price * quantity).toFixed(2)} $</span></p>
+                        <div class="quantity-wrapper">
+                            <div>
+                                Quantity:
+                                <span class="quantity">${quantity}</span>
+                            </div>
+                            <button value="${id}" class="minus">-</button>
+                            <button value="${id}" class="plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        cartList.innerHTML = html;
+    }
+
+    // add item to cartItems array
+    function addItemToCartItems(id) {
+        const input = document.getElementsByClassName('input');
+        fetch('https://fakestoreapi.com/products')
+            .then((response) => response.json())
+            .then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    if (pushedIds.indexOf(id) < 0) {
+                        if (data[i].id == id) {
+                            const title = data[i].title;
+                            const price = data[i].price;
+                            const item = {
+                                id: id,
+                                title: title,
+                                price: price,
+                                quantity: Number(input[i].value),
+                            };
+                            pushedIds.push(id);
+                            cartItems.push(item);
+                        }
+                    } else if (cartItems[i] != undefined) {
+                        cartItems[i].quantity += Number(input[i].value);
+                    }
+                }
+                addItemsToCart();
+            });
+    }
+
+    // check if add to cart button exist
+    document.body.addEventListener('click', function (e) {
+        if (e.target.className == 'add') {
+            addItemToCartItems(e.target.id);
+        } else if (e.target.className == 'minus' || e.target.className == 'plus') {
+            let id = e.target.value;
+            for (let i = 0; i < cartItems.length; i++) {
+                if (cartItems[i].id == id) {
+                    if (e.target.className == 'minus') {
+                        if (cartItems[i].quantity == 1) {
+                            cartItems.splice(i, 1);
+                        } else {
+                            cartItems[i].quantity -= 1;
+                        }
+                    } else {
+                        cartItems[i].quantity += 1;
+                    }
+                    addItemsToCart();
+                }
+            }
+        }
+    });
 });
